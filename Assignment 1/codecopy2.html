@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Roll a dice game</title>
+        <style>
+            button{
+                width: auto;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            body{
+                text-align: center;
+                background-color: darkgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="dices">
+            <img id="dice1" src="dice_1.png" width="200px">
+            <img id="dice2" src="dice_1.png" width="200px">
+        </div>
+        <button onclick="roll()" type="button">ROLL</button><br>
+        <div class="images">
+            <img src="img4.png" width="215px" height="auto">
+            <img src="img5.png" width="145px" height="auto">
+        </div>
+        <p id="res"></p>
+        <p id="win"></p>
+        <button onClick="window.location.reload();">NEW GAME</button>
+   
+        <script>
+            var result1;
+            var result2;
+            var random1;
+            var random2;
+            var player1 = 0;
+            var player2 = 0;
+            var rollNo = 1;
+
+            function roll(){
+                random1 = Math.floor(Math.random() * 6) + 1;
+                random2 = Math.floor(Math.random() * 6) + 1;
+                result = document.getElementById("res");
+               
+                if(rollNo%2 == 1){
+                    result.innerHTML = "Player 1 : " + random1 + " and " + random2 + " = " + (player1 + random1 + random2);
+                }else{
+                    result.innerHTML = "Player 2 : " + random1 + " and " + random2 + " = " + (player2 + random1 + random2);
+                }
+
+                if(random1==1){
+                    document.getElementById("dice1").src = "dice_1.png";
+                }
+                if(random1==2){
+                    document.getElementById("dice1").src = "dice_2.png";
+                }
+                if(random1==3){
+                    document.getElementById("dice1").src = "dice_3.png";
+                }
+                if(random1==4){
+                    document.getElementById("dice1").src = "dice_4.png";
+                }
+                if(random1==5){
+                    document.getElementById("dice1").src = "dice_5.png";
+                }
+                if(random1==6){
+                    document.getElementById("dice1").src = "dice_6.png";
+                }
+                if(random2==1){
+                    document.getElementById("dice2").src = "dice_1.png";
+                }
+                if(random2==2){
+                    document.getElementById("dice2").src = "dice_2.png";
+                }
+                if(random2==3){
+                    document.getElementById("dice2").src = "dice_3.png";
+                }
+                if(random2==4){
+                    document.getElementById("dice2").src = "dice_4.png";
+                }
+                if(random2==5){
+                    document.getElementById("dice2").src = "dice_5.png";
+                }
+                if(random2==6){
+                    document.getElementById("dice2").src = "dice_6.png";
+                }
+
+                if(rollNo%2 === 1){
+                    if(random1 == 1 && random2 == 1){
+                        player1 = 0;
+                        rollNo++;
+                    }else if(random1 != 1 && random2 != 1 && random1==random2){
+                        player1 = player1 + random1 + random2;
+                    }
+                    else{
+                        player1 = player1 + random1 + random2;
+                        rollNo++;
+                    }
+                    
+                }
+                else if(rollNo%2 === 0){
+                    if(random1 == 1 && random2 == 1){
+                        player2 = 0;
+                        rollNo++;
+                    }else if(random1 != 1 && random2 != 1 && random1==random2){
+                        player2 = player2 + random1 + random2;
+                    }
+                    else{
+                        player2 = player2 + random1 + random2;
+                        rollNo++;
+                    }
+                }
+
+                if(player1 >= 50){
+                    document.getElementById("win").innerHTML = "Player 1 wins...";
+                }
+                else if(player2 >= 50){
+                    document.getElementById("win").innerHTML = "Player 2 wins...";
+                }
+            }
+        </script>
+    </body>
+</html>

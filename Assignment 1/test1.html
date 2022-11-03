@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Roll a dice game</title>
+    </head>
+    <body>
+        <div class="game">
+            <div class="dices">
+                <img id="dice1" src="dice_1.png" width="200px">
+                <img id="dice2" src="dice_1.png" width="200px">
+            </div>
+            <button onclick="roll()" type="button">ROLL</button><br>
+            <img src="img1.png" width="200px" height="auto">
+            <img src="img2.jpg" width="300px" height="auto"><br>
+            <p id="res1"></p>
+            <p id="res2"></p>
+            <p id="win"></p>
+            <button onClick="window.location.reload();">NEW GAME</button>
+        </div>
+        <script>
+            var result1;
+            var result2;
+            var random1;
+            var random2;
+            var player1 = 0;
+            var player2 = 0;
+            var rollNo = 1;
+
+            function roll(){
+                random1 = Math.floor(Math.random() * 6) + 1;
+                random2 = Math.floor(Math.random() * 6) + 1;
+                result1 = document.getElementById("res1");
+                result2 = document.getElementById("res2");
+                
+                result1.innerHTML = random1;
+                result2.innerHTML = random2;
+
+                if(random1==1){
+                    document.getElementById("dice1").src = "dice_1.png";
+                }
+                if(random1==2){
+                    document.getElementById("dice1").src = "dice_2.png";
+                }
+                if(random1==3){
+                    document.getElementById("dice1").src = "dice_3.png";
+                }
+                if(random1==4){
+                    document.getElementById("dice1").src = "dice_4.png";
+                }
+                if(random1==5){
+                    document.getElementById("dice1").src = "dice_5.png";
+                }
+                if(random1==6){
+                    document.getElementById("dice1").src = "dice_6.png";
+                }
+                if(random2==1){
+                    document.getElementById("dice2").src = "dice_1.png";
+                }
+                if(random2==2){
+                    document.getElementById("dice2").src = "dice_2.png";
+                }
+                if(random2==3){
+                    document.getElementById("dice2").src = "dice_3.png";
+                }
+                if(random2==4){
+                    document.getElementById("dice2").src = "dice_4.png";
+                }
+                if(random2==5){
+                    document.getElementById("dice2").src = "dice_5.png";
+                }
+                if(random2==6){
+                    document.getElementById("dice2").src = "dice_6.png";
+                }
+
+                if(rollNo%2 === 1){
+                    player1 = player1 + random1 + random2;
+                    rollNo++;
+                }
+                else{
+                    player2 = player2 + random1 + random2;
+                    rollNo++;
+                }
+
+                if(player1 >= 100){
+                    document.getElementById("win").innerHTML = "Player 1 wins...";
+                }
+                else if(player2 >= 100){
+                    document.getElementById("win").innerHTML = "Player 2 wins...";
+                }
+
+                if(rollNo%2 == 1 && random1==1 && random2==1){
+                    player1 == 0;
+                }else if(rollNo%2 == 0 && random==1 && random2==1){
+                    player2 == 0;
+                }
+
+                if(rollNo%2 == 1 && random1 == random2 && random1 != 1 && random2 != 1){
+                    player1 = player1 + random1 + random2;
+                    rollNo = rollNo + 2;
+                }else if(rollNo%2 == 0 && random1 == random2 && random1 != 1 && random2 != 1){
+                    player2 = player2 + random1 + random2;
+                    rollNo = rollNo + 2;
+                }
+            }
+        </script>
+    </body>
+</html>
